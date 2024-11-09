@@ -46,7 +46,7 @@ int temp,flag;
 for(int i=0;i<s;i++)
 {
 flag=0;
-for(int j=0;j<s-1;j++)
+for(int j=0;j<s-i-1;j++)
 {
 if(arr[j]>arr[j+1])
 {

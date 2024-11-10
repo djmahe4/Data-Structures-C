@@ -17,48 +17,51 @@ void powe();
 
 void createstack(int s)
 {
-size=s;
-a=malloc(sizeof(size));
+    size=s;
+    a=malloc(sizeof(size));
 }
+
 bool isempty()
 {
 if(top==-1)
-return true;
+    return true;
 else
-return false;
+    return false;
 }
+
 bool isfull()
 {
 if(top==size)
-return true;
+    return true;
 else
-return false;
+    return false;
 }
+
 void push(char item)
 {
-if(isfull())
-
-printf("stack overflow");
-
-else
-
-a[++top]=item;
+    if(isfull())
+        printf("stack overflow");
+    else
+        a[++top]=item;
 }
+
 char pop()
 {
 if(isempty())
-return '0';
+    return '0';
 else
-return a[top--];
+    return a[top--];
 }
-char outputek()
+
+char peek()
 {
-if(isempty())
-return '0';
-else
-return a[top];
+    if(isempty())
+        return '0';
+    else
+        return a[top];
 
 }
+
 int precedence (char p)
 {
 if(p=='+'||p=='-')
@@ -70,63 +73,62 @@ return 3;
 else if(p=='(')
 return 0;
 }
+
 void infix_postfix(char a[100])
 {
-int len=strlen(a);
-int i=0,j=0;
-createstack(len);
-while(a[i]!='\0')
-{
-char t=a[i];
-if(t=='(')
-push(a[i]);
-else if((t=='+')||(t=='-')||(t=='*')||(t=='/')||(t=='^'))
-{
-if(!isempty())
-{
-while(precedence(t)<=precedence(outputek()))
-{
-output[j]=pop();
-j++;
-if(isempty())
-  break;
+    int len=strlen(a);
+    int i=0,j=0;
+    createstack(len);
+    while(a[i]!='\0')
+    {
+        char t=a[i];
+        if(t=='(')
+            push(a[i]);
+        else if((t=='+')||(t=='-')||(t=='*')||(t=='/')||(t=='^'))
+        {
+            if(!isempty())
+            {
+            while(precedence(t)<=precedence(peek()))
+                {
+                output[j]=pop();
+                j++;
+                if(isempty())
+                  break;
+                }
+            }
+            push(t);
+        }
+        else if(t==')')
+        {
+        while(!isempty())
+            {
+            char temp=pop();
+            if(temp!='(')
+                {
+                output[j]=temp;
+                j++;
+                }
+            else
+            break;
+            }
+        }
+        else
+        {
+            output[j]=t;
+            j++;
 
+        }
+    i++;
+    }
+    while(!isempty())
+    {
+        output[j]=pop();
+        j++;
+    }
+    output[j]='\0';
 }
-}
-push(t);
-}
-else if(t==')')
-{
-while(!isempty())
-{
-char temp=pop();
-if(temp!='(')
-{
-output[j]=temp;
-j++;
-}
-else
-break;
-}
-}
-else
-{
-output[j]=t;
-j++;
-
-}
-i++;
-}
-while(!isempty())
-{
-output[j]=pop();
-j++;
-}
-output[j]='\0';
 
 
-
-}
 void main()
 {
 char infix[100];

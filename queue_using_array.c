@@ -80,7 +80,7 @@ while(1)
 		//dequeue
 		item=dequeue();
 		if(item==0)
-			printf("queue overflow\n");
+			printf("queue underflow\n");
 		else
 			printf("%d deleted\n", item);
 		break;

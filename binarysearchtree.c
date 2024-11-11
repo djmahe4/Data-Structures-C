@@ -30,64 +30,6 @@ node* createnode()
  return newnode;
 }
 
-
-
-void insertlast(node *head,node_tree *node1)
-{
- node *newnode=createnode();
- newnode->data=node1;
- if(head->link==NULL)
-  {
-  head->link=newnode;
-  newnode->link=NULL;
-
-  }
- else
-  {
-  node *current=head;
-  while(current->link!=NULL)
-  {
-  current=current->link;
-  }
-  newnode->link=current->link;
-  current->link=newnode;
-
-  }
-
-}
-
-node_tree* deletefirst(node *head)
-{
-   node_tree *temp=NULL;
- if(head->link!=NULL)
- {
-   temp=head->link->data;
-   head->link=head->link->link;
- }
-return temp;
-}
-
-
-
-
-
-
-node* createqueue()
-{
-node *head=createhead();
-return head;
-}
-
-void enqueue(node *head,node_tree *node)
-{
-  insertlast(head,node);
-}
-
-node_tree* dequeue(node *head)
-{
- return(deletefirst(head));
-}
-
 node_tree* createnode_tree()
 {
         node_tree *newnode;

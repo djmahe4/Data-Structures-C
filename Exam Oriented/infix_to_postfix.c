@@ -22,6 +22,7 @@ char pop() {
 int precedence(char symbol) {
     if (symbol == '+' || symbol == '-') return 1;
     if (symbol == '*' || symbol == '/') return 2;
+    if (symbol == '^') return 3;
     return 0;
 }
 
